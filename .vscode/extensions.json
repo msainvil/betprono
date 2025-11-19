@@ -1,0 +1,54 @@
+{
+  "recommendations": [
+    // React Native & Expo
+    "msjsdiag.vscode-react-native",
+    "expo.vscode-expo-tools",
+
+    // TypeScript
+    "ms-vscode.vscode-typescript-next",
+
+    // ESLint & Prettier
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+
+    // Snippets & Productivity
+    "dsznajder.es7-react-js-snippets",
+    "formulahendry.auto-rename-tag",
+    "formulahendry.auto-close-tag",
+
+    // Git
+    "eamodio.gitlens",
+
+    // Icons & Themes
+    "pkief.material-icon-theme",
+
+    // IntelliSense
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+
+    // Testing
+    "orta.vscode-jest",
+
+    // Markdown
+    "yzhang.markdown-all-in-one",
+
+    // Color Picker
+    "anseki.vscode-color",
+
+    // Code Spell Checker
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-french",
+
+    // Import Cost
+    "wix.vscode-import-cost",
+
+    // Error Lens
+    "usernamehw.errorlens",
+
+    // TODO Highlight
+    "wayou.vscode-todo-highlight",
+
+    // Better Comments
+    "aaron-bond.better-comments"
+  ]
+}

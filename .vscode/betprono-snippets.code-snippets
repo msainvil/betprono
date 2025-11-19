@@ -1,0 +1,442 @@
+{
+  "React Native Functional Component": {
+    "prefix": "rnfc",
+    "body": [
+      "import React from 'react';",
+      "import { View, Text, StyleSheet } from 'react-native';",
+      "import { colors, typography, spacing } from '../../constants/design-tokens';",
+      "",
+      "interface ${1:Component}Props {",
+      "  ${2:// props}",
+      "}",
+      "",
+      "export default function ${1:Component}({ ${3} }: ${1:Component}Props) {",
+      "  return (",
+      "    <View style={styles.container}>",
+      "      <Text style={styles.text}>${1:Component}</Text>",
+      "    </View>",
+      "  );",
+      "}",
+      "",
+      "const styles = StyleSheet.create({",
+      "  container: {",
+      "    flex: 1,",
+      "    backgroundColor: colors.background.primary,",
+      "  },",
+      "  text: {",
+      "    ...typography.body,",
+      "    color: colors.text.primary,",
+      "  },",
+      "});",
+      ""
+    ],
+    "description": "Create a React Native functional component with TypeScript"
+  },
+
+  "BetProno Screen": {
+    "prefix": "bpscreen",
+    "body": [
+      "import React from 'react';",
+      "import { View, Text, StyleSheet, ScrollView } from 'react-native';",
+      "import { SafeAreaView } from 'react-native-safe-area-context';",
+      "import { colors, typography, spacing, screenPadding, commonStyles } from '../../constants/design-tokens';",
+      "",
+      "export default function ${1:Screen}() {",
+      "  return (",
+      "    <SafeAreaView style={styles.container} edges={['top']}>",
+      "      <ScrollView",
+      "        contentContainerStyle={styles.scrollContent}",
+      "        showsVerticalScrollIndicator={false}",
+      "      >",
+      "        <Text style={styles.title}>${1:Screen}</Text>",
+      "        ",
+      "        ${0}",
+      "      </ScrollView>",
+      "    </SafeAreaView>",
+      "  );",
+      "}",
+      "",
+      "const styles = StyleSheet.create({",
+      "  container: {",
+      "    ...commonStyles.screenContainer,",
+      "  },",
+      "  scrollContent: {",
+      "    paddingVertical: screenPadding.vertical,",
+      "  },",
+      "  title: {",
+      "    ...typography.h1,",
+      "    color: colors.text.primary,",
+      "    marginBottom: spacing.xl,",
+      "  },",
+      "});",
+      ""
+    ],
+    "description": "Create a BetProno screen with common structure"
+  },
+
+  "BetProno Card Component": {
+    "prefix": "bpcard",
+    "body": [
+      "import React from 'react';",
+      "import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';",
+      "import { colors, typography, borderRadius, spacing, cardPadding, elevation, commonStyles } from '../../constants/design-tokens';",
+      "import { haptic } from '../../utils/haptic';",
+      "",
+      "interface ${1:Card}Props {",
+      "  ${2:data}: any;",
+      "  onPress?: () => void;",
+      "}",
+      "",
+      "export default function ${1:Card}({ ${2:data}, onPress }: ${1:Card}Props) {",
+      "  const handlePress = () => {",
+      "    if (onPress) {",
+      "      haptic.light();",
+      "      onPress();",
+      "    }",
+      "  };",
+      "",
+      "  return (",
+      "    <TouchableOpacity",
+      "      activeOpacity={0.8}",
+      "      onPress={handlePress}",
+      "      style={[commonStyles.card, elevation.low]}",
+      "    >",
+      "      <Text style={styles.title}>${1:Card}</Text>",
+      "      ${0}",
+      "    </TouchableOpacity>",
+      "  );",
+      "}",
+      "",
+      "const styles = StyleSheet.create({",
+      "  title: {",
+      "    ...typography.h3,",
+      "    color: colors.text.primary,",
+      "    marginBottom: spacing.md,",
+      "  },",
+      "});",
+      ""
+    ],
+    "description": "Create a BetProno card component"
+  },
+
+  "BetProno Button": {
+    "prefix": "bpbutton",
+    "body": [
+      "<Button",
+      "  label=\"${1:Label}\"",
+      "  onPress={() => ${2:console.log('Pressed')}}",
+      "  variant=\"${3|primary,secondary,ghost,danger|}\"",
+      "  ${4:fullWidth}",
+      "/>"
+    ],
+    "description": "Insert a BetProno Button component"
+  },
+
+  "BetProno Badge Confiance": {
+    "prefix": "bpbadge",
+    "body": [
+      "<BadgeConfiance",
+      "  confidence={${1:73}}",
+      "  size=\"${2|small,medium,large|}\"",
+      "  ${3:showGlow}",
+      "/>"
+    ],
+    "description": "Insert a BadgeConfiance component"
+  },
+
+  "Zustand Store": {
+    "prefix": "zustand",
+    "body": [
+      "import { create } from 'zustand';",
+      "import { persist, createJSONStorage } from 'zustand/middleware';",
+      "import AsyncStorage from '@react-native-async-storage/async-storage';",
+      "",
+      "interface ${1:Store}State {",
+      "  ${2:data}: any;",
+      "  set${3:Data}: (${2:data}: any) => void;",
+      "}",
+      "",
+      "export const use${1:Store} = create<${1:Store}State>()(",
+      "  persist(",
+      "    (set) => ({",
+      "      ${2:data}: null,",
+      "",
+      "      set${3:Data}: (${2:data}) => set({ ${2:data} }),",
+      "    }),",
+      "    {",
+      "      name: '${4:store-name}',",
+      "      storage: createJSONStorage(() => AsyncStorage),",
+      "    }",
+      "  )",
+      ");",
+      ""
+    ],
+    "description": "Create a Zustand store with persistence"
+  },
+
+  "React Query Hook": {
+    "prefix": "rquery",
+    "body": [
+      "import { useQuery } from '@tanstack/react-query';",
+      "import api from '../services/api';",
+      "",
+      "export const use${1:Data} = (${2:params}) => {",
+      "  return useQuery({",
+      "    queryKey: ['${3:key}', ${2:params}],",
+      "    queryFn: async () => {",
+      "      const response = await api.get('${4:/endpoint}', {",
+      "        params: ${2:params},",
+      "      });",
+      "      return response.data;",
+      "    },",
+      "    staleTime: 1000 * 60 * 5, // 5 minutes",
+      "  });",
+      "};",
+      ""
+    ],
+    "description": "Create a React Query hook"
+  },
+
+  "React Query Mutation": {
+    "prefix": "rmutation",
+    "body": [
+      "import { useMutation, useQueryClient } from '@tanstack/react-query';",
+      "import api from '../services/api';",
+      "",
+      "export const use${1:Action} = () => {",
+      "  const queryClient = useQueryClient();",
+      "",
+      "  return useMutation({",
+      "    mutationFn: async (${2:data}: any) => {",
+      "      const response = await api.post('${3:/endpoint}', ${2:data});",
+      "      return response.data;",
+      "    },",
+      "    onSuccess: () => {",
+      "      queryClient.invalidateQueries({ queryKey: ['${4:key}'] });",
+      "    },",
+      "  });",
+      "};",
+      ""
+    ],
+    "description": "Create a React Query mutation hook"
+  },
+
+  "Reanimated Animation": {
+    "prefix": "reanimated",
+    "body": [
+      "import Animated, {",
+      "  useAnimatedStyle,",
+      "  useSharedValue,",
+      "  withTiming,",
+      "  withSpring,",
+      "} from 'react-native-reanimated';",
+      "",
+      "const ${1:scale} = useSharedValue(1);",
+      "",
+      "const ${2:animatedStyle} = useAnimatedStyle(() => ({",
+      "  transform: [{ scale: ${1:scale}.value }],",
+      "}));",
+      "",
+      "// Trigger animation",
+      "${1:scale}.value = withSpring(${3:1.1});",
+      "",
+      "// Use in component",
+      "<Animated.View style={${2:animatedStyle}}>",
+      "  ${0}",
+      "</Animated.View>"
+    ],
+    "description": "Create a Reanimated animation"
+  },
+
+  "BetProno Haptic": {
+    "prefix": "bphaptic",
+    "body": [
+      "import { haptic } from '../../utils/haptic';",
+      "",
+      "haptic.${1|light,medium,heavy,success,error|}();"
+    ],
+    "description": "Add haptic feedback"
+  },
+
+  "BetProno Typography Style": {
+    "prefix": "bptypo",
+    "body": [
+      "...typography.${1|display,h1,h2,h3,bodyLarge,body,bodySmall,caption,button,numbersLarge,numbersMedium|}"
+    ],
+    "description": "Insert BetProno typography style"
+  },
+
+  "BetProno Color": {
+    "prefix": "bpcolor",
+    "body": [
+      "colors.${1|background,accent,text,feedback,functional,border|}.${2}"
+    ],
+    "description": "Insert BetProno color"
+  },
+
+  "BetProno Common Style": {
+    "prefix": "bpstyle",
+    "body": [
+      "commonStyles.${1|card,cardGlass,screenContainer,sectionHeader,divider,centeredContent,row,rowBetween|}"
+    ],
+    "description": "Insert BetProno common style"
+  },
+
+  "StyleSheet Create": {
+    "prefix": "rnss",
+    "body": [
+      "const styles = StyleSheet.create({",
+      "  ${1:container}: {",
+      "    ${2:flex: 1,}",
+      "  },",
+      "});",
+      ""
+    ],
+    "description": "Create a StyleSheet"
+  },
+
+  "useState Hook": {
+    "prefix": "ust",
+    "body": [
+      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState${2:<${3:type}>}(${4:initialValue});"
+    ],
+    "description": "Create useState with TypeScript"
+  },
+
+  "useEffect Hook": {
+    "prefix": "uef",
+    "body": [
+      "useEffect(() => {",
+      "  ${1:// effect}",
+      "  ",
+      "  return () => {",
+      "    ${2:// cleanup}",
+      "  };",
+      "}, [${3:dependencies}]);"
+    ],
+    "description": "Create useEffect hook"
+  },
+
+  "BetProno Safe Area View": {
+    "prefix": "bpsafe",
+    "body": [
+      "import { SafeAreaView } from 'react-native-safe-area-context';",
+      "",
+      "<SafeAreaView style={styles.container} edges={['${1|top,bottom,left,right|}']}>",
+      "  ${0}",
+      "</SafeAreaView>"
+    ],
+    "description": "Insert SafeAreaView with edges"
+  },
+
+  "BetProno Linear Gradient": {
+    "prefix": "bpgradient",
+    "body": [
+      "import { LinearGradient } from 'expo-linear-gradient';",
+      "",
+      "<LinearGradient",
+      "  colors={['#18E08F', '#2F7BFF']}",
+      "  start={{ x: 0, y: 0 }}",
+      "  end={{ x: 1, y: 0 }}",
+      "  style={styles.${1:gradient}}",
+      ">",
+      "  ${0}",
+      "</LinearGradient>"
+    ],
+    "description": "Insert BetProno gradient"
+  },
+
+  "BetProno Test File": {
+    "prefix": "bptest",
+    "body": [
+      "import { render, fireEvent } from '@testing-library/react-native';",
+      "import ${1:Component} from '../${1:Component}';",
+      "",
+      "describe('${1:Component}', () => {",
+      "  it('renders correctly', () => {",
+      "    const { getByText } = render(<${1:Component} ${2:props} />);",
+      "    expect(getByText('${3:text}')).toBeTruthy();",
+      "  });",
+      "",
+      "  it('${4:test description}', () => {",
+      "    ${0}",
+      "  });",
+      "});",
+      ""
+    ],
+    "description": "Create a test file for a component"
+  },
+
+  "Console Log": {
+    "prefix": "clg",
+    "body": [
+      "console.log('${1:label}:', ${2:variable});"
+    ],
+    "description": "Console log with label"
+  },
+
+  "Try Catch": {
+    "prefix": "tryc",
+    "body": [
+      "try {",
+      "  ${1:// code}",
+      "} catch (error) {",
+      "  console.error('${2:Error}:', error);",
+      "  ${3:// error handling}",
+      "}"
+    ],
+    "description": "Try catch block"
+  },
+
+  "BetProno Format Currency": {
+    "prefix": "bpcurrency",
+    "body": [
+      "formatCurrency(${1:amount}${2:, true})"
+    ],
+    "description": "Format currency with BetProno helper"
+  },
+
+  "BetProno Format Percentage": {
+    "prefix": "bppercentage",
+    "body": [
+      "formatPercentage(${1:value}${2:, true})"
+    ],
+    "description": "Format percentage with BetProno helper"
+  },
+
+  "BetProno Get Confidence Style": {
+    "prefix": "bpconfidence",
+    "body": [
+      "const ${1:style} = getConfidenceStyle(${2:confidence});"
+    ],
+    "description": "Get confidence style"
+  },
+
+  "Arrow Function": {
+    "prefix": "arfn",
+    "body": [
+      "const ${1:functionName} = (${2:params}) => {",
+      "  ${0}",
+      "};"
+    ],
+    "description": "Create arrow function"
+  },
+
+  "Interface": {
+    "prefix": "int",
+    "body": [
+      "interface ${1:Name} {",
+      "  ${2:prop}: ${3:type};",
+      "}"
+    ],
+    "description": "Create TypeScript interface"
+  },
+
+  "Type": {
+    "prefix": "typ",
+    "body": [
+      "type ${1:Name} = ${2:type};"
+    ],
+    "description": "Create TypeScript type"
+  }
+}
